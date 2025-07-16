@@ -90,18 +90,15 @@ namespace CTraffic {
     }
 
     function handleOnRequestRed() {
-basic.showNumber(0)
+        let clr = COLOR
         if (EventOnRed) EventOnRed();
-basic.showNumber(1)
-        radio.sendNumber(COMMAND.ReadyRed)
-basic.showNumber(2)
+        if (clr != Color.Red)
+            radio.sendNumber(COMMAND.ReadyRed)
     }
 
     function handleOnRequestGreen() {
         BUSY = true
-basic.showNumber(3)
         if (EventOnGreen) EventOnGreen();
-basic.showNumber(4)
     }
 
     radio.onReceivedNumber(function (cmd: number) {
