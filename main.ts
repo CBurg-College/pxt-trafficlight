@@ -62,7 +62,7 @@ namespace CTraffic {
         Red
     }
 
-    let COLOR = Color.Red
+    let COLOR = Color.Orange
 
     ////////////////////////////
     // Communication commands //
@@ -90,13 +90,18 @@ namespace CTraffic {
     }
 
     function handleOnRequestRed() {
+basic.showNumber(0)
         if (EventOnRed) EventOnRed();
+basic.showNumber(1)
         radio.sendNumber(COMMAND.ReadyRed)
+basic.showNumber(2)
     }
 
     function handleOnRequestGreen() {
         BUSY = true
+basic.showNumber(3)
         if (EventOnGreen) EventOnGreen();
+basic.showNumber(4)
     }
 
     radio.onReceivedNumber(function (cmd: number) {
