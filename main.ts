@@ -50,7 +50,7 @@ namespace CTraffic {
     // Light colors //
     //////////////////
 
-    export enum Color {
+    export enum Light {
         //% block="green"
         //% block.loc.nl="groen"
         Green,
@@ -62,7 +62,7 @@ namespace CTraffic {
         Red
     }
 
-    let COLOR = Color.Orange
+    let LIGHT = Light.Orange
 
     ////////////////////////////
     // Communication commands //
@@ -90,9 +90,9 @@ namespace CTraffic {
     }
 
     function handleOnRequestRed() {
-        let clr = COLOR
+        let clr = LIGHT
         if (EventOnRed) EventOnRed();
-        if (clr != Color.Red)
+        if (clr != Light.Red)
             radio.sendNumber(COMMAND.ReadyRed)
     }
 
@@ -123,25 +123,25 @@ namespace CTraffic {
         basic.pause(time * 1000)
     }
 
-    //% block="light is %color"
-    //% block.loc.nl="het licht staat op %color"
-    export function isColour(color: Color): boolean {
-        return (COLOR == color)
+    //% block="light is %light"
+    //% block.loc.nl="het licht staat op %light"
+    export function isLight(light: Light): boolean {
+        return (LIGHT == light)
     }
 
-    //% block="turn the light %color"
-    //% block.loc.nl="zet het licht op %color"
-    export function setColor(color: Color): void {
-        COLOR = color
+    //% block="turn the light %light"
+    //% block.loc.nl="zet het licht op %light"
+    export function setLight(light: Light): void {
+        LIGHT = light
 
         pins.digitalWritePin(DigitalPin.P0, 0)
         pins.digitalWritePin(DigitalPin.P1, 0)
         pins.digitalWritePin(DigitalPin.P2, 0)
 
-        switch (color) {
-            case Color.Red: pins.digitalWritePin(DigitalPin.P0, 1); break;
-            case Color.Orange: pins.digitalWritePin(DigitalPin.P1, 1); break;
-            case Color.Green: pins.digitalWritePin(DigitalPin.P2, 1); break;
+        switch (light) {
+            case Light.Red: pins.digitalWritePin(DigitalPin.P0, 1); break;
+            case Light.Orange: pins.digitalWritePin(DigitalPin.P1, 1); break;
+            case Light.Green: pins.digitalWritePin(DigitalPin.P2, 1); break;
         }
     }
 
@@ -173,4 +173,4 @@ namespace CTraffic {
 }
 
 CTraffic.display()
-CTraffic.setColor(CTraffic.Color.Orange)
+CTraffic.setLight(CTraffic.Light.Orange)
