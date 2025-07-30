@@ -128,4 +128,6 @@ displayAfterLogo(() => {
     basic.clearScreen()
 })
 
+basic.pause(1000)
+basic.clearScreen()
 CTraffic.setLight(CTraffic.Light.Orange)
